@@ -45,16 +45,16 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         image = getToolkit().getImage(url);
 
         if (gate.getInputSize() > 2) {
-            add(inBox1, 40, 15, 17, 20);
+            add(inBox1, 100, 15, 17, 20);
             add(inBox2, 70, 15, 17, 20);
-            add(inBox3, 100, 15, 17, 20);
+            add(inBox3, 40, 15, 17, 20);
             inBox1.addActionListener(this);
             inBox2.addActionListener(this);
             inBox3.addActionListener(this);
 
         } else if (gate.getInputSize() > 1) {
-            add(inBox1, 55, 15, 17, 20);
-            add(inBox2, 85, 15, 17, 20);
+            add(inBox1, 85, 15, 17, 20);
+            add(inBox2, 55, 15, 17, 20);
             inBox1.addActionListener(this);
             inBox2.addActionListener(this);
 
@@ -136,11 +136,6 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
 
         // Se o clique foi dentro do circulo colorido/preto...
         if (clickCircleTrueOrFalse(x, y)) {
-            /*
-             * (x-x0)² + (y-y0)² <= r²
-             * ...então abrimos a janela seletora de cor...
-             */
-//            this.trueColor = JColorChooser.showDialog(this, null, this.color);
             Color oldColor = light.getColor();
             Color newColor = JColorChooser.showDialog(this, null, oldColor);
 
