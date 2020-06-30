@@ -14,7 +14,6 @@ public class MuxGate extends Gate {
         nand4 = new NandGate();
 
         nand3.connect(0, nand1);
-
         nand4.connect(0, nand2);
         nand4.connect(1, nand3);
     }
