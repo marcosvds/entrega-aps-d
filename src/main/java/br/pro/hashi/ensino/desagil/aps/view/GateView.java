@@ -115,10 +115,13 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         repaint();
     }
 
-
     @Override
     public void actionPerformed(ActionEvent event) {
         update();
+    }
+
+    private boolean clickCircleTrueOrFalse(int x, int y) {
+        return Math.pow(x - (lightx + lightr / 2.0), 2) + Math.pow(y - (lighty + lightr / 2.0), 2) <= Math.pow(10, 2);
     }
 
     @Override
@@ -128,18 +131,26 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         int x = event.getX();
         int y = event.getY();
 
-        int dist = Math.abs(x - (lightx + 12)) + Math.abs(y - (lighty + 12));
-        System.out.println(dist);
-        System.out.println("r" + lightr);
+        System.out.println("line 87 [debug purpose]: (x,y): (" + x + "," + y + ")");
+        System.out.println("line 88 [debug purpose]: inside circle: " + clickCircleTrueOrFalse(x, y));
 
+        // Se o clique foi dentro do circulo colorido/preto...
+        if (clickCircleTrueOrFalse(x, y)) {
+            /*
+             * (x-x0)² + (y-y0)² <= r²
+             * ...então abrimos a janela seletora de cor...
+             */
+//            this.trueColor = JColorChooser.showDialog(this, null, this.color);
+            Color oldColor = light.getColor();
+            Color newColor = JColorChooser.showDialog(this, null, oldColor);
 
-        // Se o clique foi dentro do circulo colorido...
-        if (dist <= 16) {
-
-            // ...então abrimos a janela seletora de cor...
-            light.setColor(JColorChooser.showDialog(this, null, Color.RED));
-
+            if (newColor != null && gate.read()) { /////
+                light.setColor(newColor);
+            } else if (newColor != null && !gate.read()) {
+                light.setOffColor(newColor);
+            }
             // ...e chamamos repaint para atualizar a tela.
+            update();
             repaint();
         }
     }
@@ -185,7 +196,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         //g.drawImage(image, 10, 80, 221, 221, this);
 
         // Desenha a imagem, passando sua posição e seu tamanho.
-        g.drawImage(image, 0, 0, 180, 160, this);
+        g.drawImage(image, 25, 25, 110, 55, this);
 
         // Desenha um quadrado cheio.
         g.setColor(light.getColor());
