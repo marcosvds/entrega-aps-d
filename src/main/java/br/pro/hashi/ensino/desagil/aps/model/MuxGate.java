@@ -7,7 +7,7 @@ public class MuxGate extends Gate {
     private final NandGate nand4;
 
     public MuxGate() {
-        super("MuxGate", 3);
+        super("MUX", 3);
         nand1 = new NandGate();
         nand2 = new NandGate();
         nand3 = new NandGate();

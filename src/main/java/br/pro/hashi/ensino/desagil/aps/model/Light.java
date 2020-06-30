@@ -4,12 +4,10 @@ import java.awt.*;
 
 public class Light implements Receiver {
     private Color color;
-    private Color offColor;
     private Emitter emitter;
 
-    public Light(int r, int g, int b, int offR, int offG, int offB) {
+    public Light(int r, int g, int b) {
         color = new Color(r, g, b);
-        offColor = new Color(offR, offG, offB);
         emitter = null;
     }
 
@@ -24,9 +22,6 @@ public class Light implements Receiver {
         this.color = color;
     }
 
-    public void setOffColor(Color offColor) {
-        this.offColor = offColor;
-    } 
     @Override
     public void connect(int inputIndex, Emitter emitter) {
         if (inputIndex != 0) {

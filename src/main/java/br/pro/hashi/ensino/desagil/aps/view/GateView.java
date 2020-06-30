@@ -28,7 +28,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         super(180, 120);
 
         this.gate = gate;
-        this.light = new Light(255, 0, 0,0,0,0);
+        this.light = new Light(255, 0, 0);
 
         //posição da luz
         lightx = 5;
@@ -146,8 +146,6 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
 
             if (newColor != null && gate.read()) { /////
                 light.setColor(newColor);
-            } else if (newColor != null && !gate.read()) {
-                light.setOffColor(newColor);
             }
             // ...e chamamos repaint para atualizar a tela.
             update();
