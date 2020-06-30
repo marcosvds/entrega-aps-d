@@ -31,8 +31,8 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         this.light = new Light(255, 0, 0);
 
         //posição da luz
-        lightx = 5;
-        lighty = 40;
+        lightx = 70;
+        lighty = 80;
         lightr = 20;
 
         inBox1 = new JCheckBox();
@@ -45,21 +45,21 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         image = getToolkit().getImage(url);
 
         if (gate.getInputSize() > 2) {
-            add(inBox1, 130, 25, 17, 20);
-            add(inBox2, 130, 40, 17, 20);
-            add(inBox3, 130, 55, 17, 20);
+            add(inBox1, 40, 15, 17, 20);
+            add(inBox2, 70, 15, 17, 20);
+            add(inBox3, 100, 15, 17, 20);
             inBox1.addActionListener(this);
             inBox2.addActionListener(this);
             inBox3.addActionListener(this);
 
         } else if (gate.getInputSize() > 1) {
-            add(inBox1, 130, 30, 17, 20);
-            add(inBox2, 130, 50, 17, 20);
+            add(inBox1, 55, 15, 17, 20);
+            add(inBox2, 85, 15, 17, 20);
             inBox1.addActionListener(this);
             inBox2.addActionListener(this);
 
         } else {
-            add(inBox1, 130, 40, 17, 20);
+            add(inBox1, 70, 15, 17, 20);
             inBox1.addActionListener(this);
         }
 
