@@ -44,20 +44,24 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         URL url = getClass().getClassLoader().getResource(name);
         image = getToolkit().getImage(url);
 
+        if (gate.getInputSize() > 2) {
+            add(inBox1, 130, 25, 17, 20);
+            add(inBox2, 130, 40, 17, 20);
+            add(inBox3, 130, 55, 17, 20);
+            inBox1.addActionListener(this);
+            inBox2.addActionListener(this);
+            inBox3.addActionListener(this);
 
-        if (gate.getInputSize() > 1) {
-            add(inBox1, 14, h + 32, 17, 20);
-            add(inBox2, 14, h + 68, 17, 20);
+        } else if (gate.getInputSize() > 1) {
+            add(inBox1, 130, 30, 17, 20);
+            add(inBox2, 130, 50, 17, 20);
+            inBox1.addActionListener(this);
             inBox2.addActionListener(this);
 
         } else {
-            add(inBox1, 14, h + 50, 17, 20);
+            add(inBox1, 130, 40, 17, 20);
+            inBox1.addActionListener(this);
         }
-
-
-        //outBox.setEnabled(false);
-        inBox1.addActionListener(this);
-
 
         addMouseListener(this);
 
@@ -65,24 +69,43 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     }
 
     private void update() {
-        System.out.println("updatou");
 
-        Switch in1 = new Switch();
-
-        if (inBox1.isSelected()) {
-            in1.turnOn();
-        }
-
-        gate.connect(0, in1);
-
-        if (gate.getInputSize() > 1) {
+        if (gate.getInputSize() > 2) {
+            Switch in1 = new Switch();
             Switch in2 = new Switch();
+            Switch in3 = new Switch();
+            if (inBox1.isSelected()) {
+                in1.turnOn();
+            }
             if (inBox2.isSelected()) {
                 in2.turnOn();
             }
+            if (inBox3.isSelected()) {
+                in3.turnOn();
+            }
+            gate.connect(0, in1);
             gate.connect(1, in2);
-        }
+            gate.connect(2, in3);
 
+        } else if (gate.getInputSize() > 1) {
+            Switch in1 = new Switch();
+            Switch in3 = new Switch();
+            if (inBox1.isSelected()) {
+                in1.turnOn();
+            }
+            if (inBox3.isSelected()) {
+                in3.turnOn();
+            }
+            gate.connect(0, in1);
+            gate.connect(1, in3);
+
+        } else {
+            Switch in1 = new Switch();
+            if (inBox1.isSelected()) {
+                in1.turnOn();
+            }
+            gate.connect(0, in1);
+        }
 
         System.out.println(gate.read());
 
@@ -90,7 +113,6 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         light.connect(0, gate);
         //outBox.setEnabled(false);
         repaint();
-
     }
 
 
