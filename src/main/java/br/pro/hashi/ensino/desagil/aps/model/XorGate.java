@@ -17,6 +17,11 @@ public class XorGate extends Gate {
         nandD = new NandGate();
         nandE = new NandGate();
 
+        nandC.connect(1, nandA);
+        nandD.connect(1, nandB);
+
+        nandE.connect(0, nandC);
+        nandE.connect(1, nandD);
     }
 
     @Override
@@ -41,12 +46,5 @@ public class XorGate extends Gate {
             nandA.connect(1, emitter);
             nandD.connect(0, emitter);
         }
-
-        nandC.connect(1, nandA);
-        nandD.connect(1, nandB);
-
-        nandE.connect(0, nandC);
-        nandE.connect(1, nandD);
-
     }
 }
