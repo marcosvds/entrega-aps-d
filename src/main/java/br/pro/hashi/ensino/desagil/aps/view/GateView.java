@@ -13,17 +13,12 @@ import java.awt.event.MouseListener;
 import java.net.URL;
 
 public class GateView extends FixedPanel implements ActionListener, MouseListener {
-
     private final Gate gate;
     private final Light light;
-
     private final JCheckBox inBox1;
     private final JCheckBox inBox2;
-
+    private final JCheckBox inBox3;
     private final Image image;
-    //private final JCheckBox outBox;
-
-
     private final int lightx;
     private final int lighty;
     private final int lightr;
@@ -33,30 +28,19 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         super(180, 120);
 
         this.gate = gate;
-        this.light = new Light(255, 0, 0);
-
-        int h = 2;
+        this.light = new Light(255, 0, 0,0,0,0);
 
         //posição da luz
-        lightx = 142;
-        lighty = 50;
-        lightr = 25;
+        lightx = 5;
+        lighty = 40;
+        lightr = 20;
 
         inBox1 = new JCheckBox();
         inBox2 = new JCheckBox();
-        //outBox = new JCheckBox();
-
-        //JLabel inLabel = new JLabel("Entrada:");
-        //JLabel outLabel = new JLabel("Saida:");
-
-        //add(inLabel, 8, h, 75, 25);
-        //add(inBox1, 10, h+30, 17, 20);
-        //add(outLabel, 8, h+62, 25, 23);
-        //add(outBox, 8, h+82, 75, 25);
-
+        inBox3 = new JCheckBox();
 
         // Usamos esse carregamento nos Desafios, vocês lembram?
-        String name = gate.toString() + ".jpg";
+        String name = gate.toString() + ".png";
         URL url = getClass().getClassLoader().getResource(name);
         image = getToolkit().getImage(url);
 
